@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ─── Config ────────────────────────────────────────────────────────────────────
 WEATHER_API_KEY = "your_openweathermap_key"
-NEWS_API_KEY    = "pub_30716dc2759d42c4b6edc2c10eb81f9c"
+NEWS_API_KEY    = "BRO"
 CITY            = "Kuala Lumpur"  # or make this dynamic per user
 
 
