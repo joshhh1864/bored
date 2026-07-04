@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ─── Config ────────────────────────────────────────────────────────────────────
 WEATHER_API_KEY = "your_openweathermap_key"
-NEWS_API_KEY    = "your_newsapi_key"
+NEWS_API_KEY    = "pub_30716dc2759d42c4b6edc2c10eb81f9c"
 CITY            = "Kuala Lumpur"  # or make this dynamic per user
 
 
@@ -63,15 +63,18 @@ async def get_news_context(client: httpx.AsyncClient) -> dict:
     """Fetches top headlines from NewsAPI."""
     try:
         response = await client.get(
-            "https://newsapi.org/v2/top-headlines",
+            "https://newsdata.io/api/1/latest",
             params={
-                "country":  "my",       # Malaysia — change as needed
-                "pageSize": 5,
-                "apiKey":   NEWS_API_KEY,
+                "country":  "my",       # Malaysia — change ass needed
+                "size": 5,
+                "apikey":   NEWS_API_KEY,
+                "excludefield": "country",
+                "language":"en"
             },
             timeout=5.0,
         )
-        articles = response.json().get("articles", [])
+        # print(response.json())
+        articles = response.json().get("results", [])
         headlines = [a["title"] for a in articles if a.get("title")]
         return {"headlines": headlines}
     except Exception as e:
